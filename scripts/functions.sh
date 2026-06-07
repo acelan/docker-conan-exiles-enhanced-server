@@ -58,11 +58,11 @@ apply_ini_overrides() {
         local section=""
         local key=""
 
+        # Only format: CONANEXILES_INI_<FILE>__<SECTION>__<KEY>=<VALUE>
+        # Double-underscore delimiters are unambiguous: section and key names
+        # may contain underscores, dots, slashes, @, or any other character.
+        # FILE does not include the .ini extension.
         if [[ "$env_name" =~ ^CONANEXILES_INI_([^_]+)__([^_].*)__([^_].*)$ ]]; then
-            file_name="${BASH_REMATCH[1]}"
-            section="${BASH_REMATCH[2]}"
-            key="${BASH_REMATCH[3]}"
-        elif [[ "$env_name" =~ ^CONANEXILES_([A-Za-z0-9]+)_([A-Za-z0-9]+)_([A-Za-z0-9]+)$ ]]; then
             file_name="${BASH_REMATCH[1]}"
             section="${BASH_REMATCH[2]}"
             key="${BASH_REMATCH[3]}"
